@@ -11,7 +11,179 @@
 / {
     behaviors {
         #include "version.dtsi"
+        
+        // Home row mod behaviors
+        LEFT_HOMEROW_MOD: LEFT_HOMEROW_MOD {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LEFT_HOMEROW_MOD";
+            bindings = <&kp>, <&kp>;
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            flavor = "balanced";
+            hold-trigger-key-positions = <36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71>;
+            hold-trigger-on-release;
+            require-prior-idle-ms = <100>;
+        };
+
+        RIGHT_HOMEROW_MOD: RIGHT_HOMEROW_MOD {
+            compatible = "zmk,behavior-hold-tap";
+            label = "RIGHT_HOMEROW_MOD";
+            bindings = <&kp>, <&kp>;
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            flavor = "balanced";
+            hold-trigger-on-release;
+            hold-trigger-key-positions = <0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35>;
+            require-prior-idle-ms = <100>;
+        };
+        
+        // Layer-tap behavior for space
+        LAYER_TAP: LAYER_TAP {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LAYER_TAP";
+            bindings = <&mo>, <&kp>;
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            flavor = "balanced";
+        };
+        
+        // Globe + Number for Function keys
+        GLOBE_F1: GLOBE_F1 {
+            compatible = "zmk,behavior-mod-morph";
+            label = "GLOBE_F1";
+            #binding-cells = <0>;
+            bindings = <&kp N1>, <&kp F1>;
+            mods = <(MOD_LGUI)>; // Using LGUI as Globe
+        };
+        
+        GLOBE_F2: GLOBE_F2 {
+            compatible = "zmk,behavior-mod-morph";
+            label = "GLOBE_F2";
+            #binding-cells = <0>;
+            bindings = <&kp N2>, <&kp F2>;
+            mods = <(MOD_LGUI)>;
+        };
+        
+        GLOBE_F3: GLOBE_F3 {
+            compatible = "zmk,behavior-mod-morph";
+            label = "GLOBE_F3";
+            #binding-cells = <0>;
+            bindings = <&kp N3>, <&kp F3>;
+            mods = <(MOD_LGUI)>;
+        };
+        
+        GLOBE_F4: GLOBE_F4 {
+            compatible = "zmk,behavior-mod-morph";
+            label = "GLOBE_F4";
+            #binding-cells = <0>;
+            bindings = <&kp N4>, <&kp F4>;
+            mods = <(MOD_LGUI)>;
+        };
+        
+        GLOBE_F5: GLOBE_F5 {
+            compatible = "zmk,behavior-mod-morph";
+            label = "GLOBE_F5";
+            #binding-cells = <0>;
+            bindings = <&kp N5>, <&kp F5>;
+            mods = <(MOD_LGUI)>;
+        };
+        
+        GLOBE_F6: GLOBE_F6 {
+            compatible = "zmk,behavior-mod-morph";
+            label = "GLOBE_F6";
+            #binding-cells = <0>;
+            bindings = <&kp N6>, <&kp F6>;
+            mods = <(MOD_LGUI)>;
+        };
+        
+        GLOBE_F7: GLOBE_F7 {
+            compatible = "zmk,behavior-mod-morph";
+            label = "GLOBE_F7";
+            #binding-cells = <0>;
+            bindings = <&kp N7>, <&kp F7>;
+            mods = <(MOD_LGUI)>;
+        };
+        
+        GLOBE_F8: GLOBE_F8 {
+            compatible = "zmk,behavior-mod-morph";
+            label = "GLOBE_F8";
+            #binding-cells = <0>;
+            bindings = <&kp N8>, <&kp F8>;
+            mods = <(MOD_LGUI)>;
+        };
+        
+        GLOBE_F9: GLOBE_F9 {
+            compatible = "zmk,behavior-mod-morph";
+            label = "GLOBE_F9";
+            #binding-cells = <0>;
+            bindings = <&kp N9>, <&kp F9>;
+            mods = <(MOD_LGUI)>;
+        };
+        
+        GLOBE_F10: GLOBE_F10 {
+            compatible = "zmk,behavior-mod-morph";
+            label = "GLOBE_F10";
+            #binding-cells = <0>;
+            bindings = <&kp N0>, <&kp F10>;
+            mods = <(MOD_LGUI)>;
+        };
+        
+        GLOBE_F11: GLOBE_F11 {
+            compatible = "zmk,behavior-mod-morph";
+            label = "GLOBE_F11";
+            #binding-cells = <0>;
+            bindings = <&kp MINUS>, <&kp F11>;
+            mods = <(MOD_LGUI)>;
+        };
+        
+        GLOBE_F12: GLOBE_F12 {
+            compatible = "zmk,behavior-mod-morph";
+            label = "GLOBE_F12";
+            #binding-cells = <0>;
+            bindings = <&kp EQUAL>, <&kp F12>;
+            mods = <(MOD_LGUI)>;
+        };
+        
+        // macOS window management macros
+        MISSION_CONTROL: MISSION_CONTROL {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LGUI &macro_tap &kp UP_ARROW &macro_release &kp LGUI>;
+            label = "MISSION_CONTROL";
+        };
+        
+        APP_EXPOSE: APP_EXPOSE {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LGUI &macro_tap &kp DOWN_ARROW &macro_release &kp LGUI>;
+            label = "APP_EXPOSE";
+        };
+        
+        SHOW_DESKTOP: SHOW_DESKTOP {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LGUI &kp F3 &macro_release &kp LGUI>;
+            label = "SHOW_DESKTOP";
+        };
+        
+        WINDOW_LEFT: WINDOW_LEFT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LGUI &kp LEFT_ARROW &macro_release &kp LGUI>;
+            label = "WINDOW_LEFT";
+        };
+        
+        WINDOW_RIGHT: WINDOW_RIGHT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LGUI &kp RIGHT_ARROW &macro_release &kp LGUI>;
+            label = "WINDOW_RIGHT";
+        };
     };
+    
     keymap {
         compatible = "zmk,keymap";
 
@@ -19,30 +191,69 @@
             display-name = "Base";
 
             // -----------------------------------------------------------------------------------------------------------
-            // | ESC | F1  | F2  | F3  | F4  | F5  | F6  | F7  | F9  | F9  | F10 | F11 | F12 | 1 | DEL | INS    |
-            // |  `  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  -  |  =  |   BKSP   | HOME  |
+            // | ESC | F1  | F2  | F3  | F4  | F5  | F6  | F7  | F8  | F9  | F10 | F11 | F12 | FN | DEL | INS    |
+            // |  `  |  1* |  2* |  3* |  4* |  5* |  6* |  7* |  8* |  9* |  0* |  -* |  =* |   BKSP   | HOME  |
             // | TAB  |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |  [  |  ]  |    \    | END |
-            // | CAPS  |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |  ;  |  '  |     ENTER     | PG UP |
+            // | CAPS  |  A† |  S† |  D† |  F† |  G  |  H  |  J‡ |  K‡ |  L‡ |  ;‡ |  '  |     ENTER     | PG UP |
             // |  SHIFT    |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  | /   |    SHIFT |  UP  |  PG DN  |
-            // |  CTL  |  WIN  |  ALT  |   SPACE   |  |  SPACE    | CTRL | MENU | ALT |  LEFT | DOWN | RIGHT |
+            // |  CTL  |  WIN  |  ALT  |   SPACE   |  |  NAV/ENT  | GLOBE | MENU | ALT |  LEFT | DOWN | RIGHT |
+            // ------------------------------------------------------------------------------------------------------------
+            // * = Globe+Number for Function keys
+            // † = Left Homerow Mods: SHIFT(A), CTRL(S), ALT(D), GUI(F)
+            // ‡ = Right Homerow Mods: GUI(J), ALT(K), CTRL(L), SHIFT(;)
             // ------------------------------------------------------------------------------------------------------------
 
             bindings = <
-&kp ESC    &kp F1     &kp F2    &kp F3    &kp F4     &kp F5     &kp F6     &kp F7     &kp F8     &kp F9    &kp F10   &kp F11    &kp F12    &mo 1          &kp DEL   &kp INS
-&kp GRAVE  &kp N1     &kp N2    &kp N3    &kp N4     &kp N5     &kp N6     &kp N7     &kp N8     &kp N9    &kp N0    &kp MINUS  &kp EQUAL  &kp BACKSPACE  &kp HOME
-&kp TAB    &kp Q      &kp W     &kp E     &kp R      &kp T      &kp Y      &kp U      &kp I      &kp O     &kp P     &kp LBKT   &kp RBKT   &kp BSLH       &kp END
-&kp CLCK   &kp A      &kp S     &kp D     &kp F      &kp G      &kp H      &kp J      &kp K      &kp L     &kp SEMI  &kp SQT    &kp RET    &kp PG_UP
-&kp LSHFT  &kp Z      &kp X     &kp C     &kp V      &kp B      &kp N      &kp M      &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT  &kp UP     &kp PG_DN
-           &kp LCTRL  &kp LGUI  &kp LALT  &kp SPACE  &kp SPACE  &kp RCTRL  &kp K_APP  &kp RALT   &kp LEFT  &kp DOWN  &kp RIGHT
+&kp ESC      &kp F1     &kp F2    &kp F3    &kp F4     &kp F5     &kp F6     &kp F7     &kp F8     &kp F9    &kp F10   &kp F11    &kp F12    &mo 1          &kp DEL   &kp INS
+&kp GRAVE    &GLOBE_F1  &GLOBE_F2 &GLOBE_F3 &GLOBE_F4  &GLOBE_F5  &GLOBE_F6  &GLOBE_F7  &GLOBE_F8  &GLOBE_F9 &GLOBE_F10 &GLOBE_F11 &GLOBE_F12 &kp BACKSPACE  &kp HOME
+&kp TAB      &kp Q      &kp W     &kp E     &kp R      &kp T      &kp Y      &kp U      &kp I      &kp O     &kp P     &kp LBKT   &kp RBKT   &kp BSLH       &kp END
+&kp CLCK     &LEFT_HOMEROW_MOD LSHIFT A  &LEFT_HOMEROW_MOD LCTRL S  &LEFT_HOMEROW_MOD LALT D  &LEFT_HOMEROW_MOD LGUI F  &kp G      &kp H      &RIGHT_HOMEROW_MOD RGUI J  &RIGHT_HOMEROW_MOD RALT K  &RIGHT_HOMEROW_MOD RCTRL L  &RIGHT_HOMEROW_MOD RSHIFT SEMI  &kp SQT    &kp RET    &kp PG_UP
+&kp LSHFT    &kp Z      &kp X     &kp C     &kp V      &kp B      &kp N      &kp M      &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT  &kp UP     &kp PG_DN
+             &kp LCTRL  &kp LGUI  &kp LALT  &kp SPACE  &LAYER_TAP 1 ENTER  &kp GLOBE  &kp K_APP  &kp RALT   &kp LEFT  &kp DOWN  &kp RIGHT
+            >;
+        };
+
+        nav_sym_layer {
+            display-name = "Nav/Sym";
+
+            // -----------------------------------------------------------------------------------------------------------
+            // | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---    |
+            // | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |   ---    | ---  |
+            // | ---  | LMB | MUP | RMB | MMB |  T  |  ^  |  &  |  *  |  (  |  )  |  _  |  +  |   ---   | --- |
+            // | ---  | MLT | MDN | MRT | --- | --- |  (  |  )  |  {  |  }  |  :  |  "  |     ---      | --- |
+            // |  ---     | MC↑ | AP↓ | DSK | W← | W→ |  <  |  >  |  [  |  ]  | |   |   ---  | ---  |  ---  |
+            // |  ---  |  ---  |  ---  |   ---    |  |  ---     | --- | --- | --- | HOME | PGDN | END |
+            // ------------------------------------------------------------------------------------------------------------
+            // Mouse Keys: LMB=Left Click, RMB=Right Click, MMB=Middle Click, MUP/MDN/MLT/MRT=Mouse movement
+            // Window Management: MC↑=Mission Control, AP↓=App Exposé, DSK=Show Desktop, W←/W→=Window Left/Right
+            // ------------------------------------------------------------------------------------------------------------
+
+            bindings = <
+&trans       &trans     &trans    &trans    &trans     &trans     &trans     &trans     &trans     &trans    &trans    &trans     &trans     &trans         &trans    &trans
+&trans       &trans     &trans    &trans    &trans     &trans     &trans     &trans     &trans     &trans    &trans    &trans     &trans     &trans         &trans
+&trans       &mkp MB1   &mmv MOVE_UP &mkp MB2 &mkp MB3  &trans     &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR  &kp UNDER  &kp PLUS   &trans         &trans
+&trans       &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &trans &trans     &kp LPAR   &kp RPAR   &kp LBRC   &kp RBRC  &kp COLON &kp DQT    &trans     &trans
+&trans       &MISSION_CONTROL &APP_EXPOSE &SHOW_DESKTOP &WINDOW_LEFT &WINDOW_RIGHT &kp LT &kp GT &kp LBKT &kp RBKT &kp PIPE &trans &kp PG_UP &trans
+             &trans     &trans    &trans    &trans     &trans     &trans     &trans     &trans     &kp HOME  &kp PG_DN &kp END
             >;
         };
 
         raise {
             display-name = "Fn";
+
+            // -----------------------------------------------------------------------------------------------------------
+            // | UNLK | MUTE | VOL- | VOL+ | PREV | PLAY | NEXT | BL- | BL+ | BRI- | BRI+ |BTCLR | BAT | --- | --- | --- |
+            // | --- | BT1 | BT2 | BT3 | BT4 | BT5 | --- | --- | --- | --- | --- | --- | --- |   ---    | ---  |
+            // | ---  | CUT | WWW | --- | --- | TV  | --- | --- | --- | --- | --- | --- | --- |   ---   | --- |
+            // | ---  | --- | --- | --- | --- | --- |HOME | --- | --- | --- | --- | --- |     ---      | --- |
+            // |  ---     | --- | --- | --- | VER | BACK| --- | --- | --- | --- | --- |   ---  | ---  |  ---  |
+            // |  ---  |  ---  |  ---  |   ---    |  |  ---     | --- | --- | --- | --- | --- | --- |
+            // ------------------------------------------------------------------------------------------------------------
+
             bindings = <
 &studio_unlock  &kp C_MUTE  &kp C_VOL_DN     &kp C_VOL_UP  &kp C_PREV  &kp C_PP        &kp C_NEXT     &bl BL_DEC  &bl BL_INC  &kp C_BRI_DN  &kp C_BRI_UP  &bt BT_CLR  &stp STP_BAT  &trans  &none  &none
-&none           &none       &none            &none         &none       &none           &none          &none       &none       &none         &none         &none       &none         &none   &none
-&none           &Win_Cut       &kp C_MEDIA_WWW  &none         &none       &kp C_MEDIA_TV  &none          &none       &none       &none         &none         &none       &none         &none   &none
+&none           &bt BT_SEL 0 &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3 &bt BT_SEL 4   &none          &none       &none       &none         &none         &none       &none         &none   &none
+&none           &Win_Cut    &kp C_MEDIA_WWW  &none         &none       &kp C_MEDIA_TV  &none          &none       &none       &none         &none         &none       &none         &none   &none
 &none           &none       &none            &none         &none       &none           &kp C_AC_HOME  &none       &none       &none         &none         &none       &none         &none
 &none           &none       &none            &none         &macro_ver  &kp C_AC_BACK   &none          &none       &none       &none         &none         &none       &none         &none
                 &none       &none            &none         &none       &none           &none          &none       &none       &none         &none         &none
